@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - ShikshaSaarthi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/geometry2.png');
+            opacity: 0.12;
+            z-index: 0;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #fffbe7 60%, #ffe0e9 100%);
+            padding: 18px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .nav-logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ff4e50;
+            font-family: 'Fredoka', cursive, sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 1px 2px 0 #fffbe7, 2px 4px 0 #f9d423;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 12px;
+            box-sizing: border-box;
+        }
+        .login-section {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        .login-card {
+            background: #fff;
+            border-radius: 32px;
+            box-shadow: 0 8px 32px rgba(255, 206, 84, 0.13);
+            padding: 48px 40px;
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .login-card h2 {
+            font-size: 2rem;
+            color: #ff4e50;
+            font-family: 'Fredoka', cursive, sans-serif;
+            margin-bottom: 24px;
+            font-weight: 900;
+            text-shadow: 1px 2px 0 #fffbe7;
+        }
+        .login-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .login-form label {
+            font-weight: 700;
+            color: #185a9d;
+            margin-bottom: 6px;
+        }
+        .login-form input {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ffe082;
+            font-size: 1rem;
+            outline: none;
+            background: #fffbe7;
+            transition: border 0.2s;
+        }
+        .login-form input:focus {
+            border: 1.5px solid #ff4e50;
+        }
+        .login-btn {
+            padding: 12px 32px;
+            background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(221,36,118,0.18);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+            margin-top: 12px;
+        }
+        .login-btn::before {
+            content: '\1F511';
+            font-size: 1.2em;
+            margin-right: 6px;
+        }
+        .login-btn:hover {
+            background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+            transform: scale(1.07);
+            box-shadow: 0 8px 32px rgba(221,36,118,0.22);
+        }
+        .login-links {
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 0.98rem;
+        }
+        .login-links a {
+            color: #185a9d;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        .login-links a:hover {
+            color: #ff4e50;
+        }
+        /* Theme Toggle Button */
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+            margin-right: 8px;
+            transition: color 0.2s, transform 0.2s;
+            color: #185a9d;
+        }
+        .theme-btn:hover {
+            color: #ff4e50;
+            transform: scale(1.15);
+        }
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            color: #f5f5f5;
+        }
+        body.dark-mode .navbar {
+            background: linear-gradient(90deg, #232526 60%, #414345 100%);
+            color: #fff;
+        }
+        body.dark-mode .nav-logo {
+            color: #ffe082;
+            text-shadow: 1px 2px 0 #232526, 2px 4px 0 #414345;
+        }
+        body.dark-mode .login-btn {
+            background: linear-gradient(90deg, #232526 0%, #414345 100%);
+            color: #ffe082;
+        }
+        body.dark-mode .login-btn:hover {
+            background: linear-gradient(90deg, #414345 0%, #232526 100%);
+        }
+        body.dark-mode .login-card {
+            background: #333;
+            color: #ffe082;
+        }
+        body.dark-mode .login-card h2 {
+            color: #ffe082;
+        }
+        body.dark-mode .login-form label {
+            color: #ffe082;
+        }
+        body.dark-mode .login-form input {
+            background: #232526;
+            color: #ffe082;
+            border: 1px solid #ffe082;
+        }
+        body.dark-mode .login-links a {
+            color: #ffe082;
+        }
+        body.dark-mode .login-links a:hover {
+            color: #ff4e50;
+        }
+        @media (max-width: 600px) {
+            .login-card {
+                padding: 24px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="index.html" class="nav-logo" style="text-decoration:none;">ShikshaSaarthi</a>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 18px;">
+                <button class="theme-btn" id="theme-toggle" title="Toggle theme">🌙</button>
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+    </nav>
+    <section class="login-section">
+        <div class="login-card">
+            <h2>Sign In</h2>
+            <form class="login-form" autocomplete="on">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <button class="login-btn" type="submit">Login</button>
+            </form>
+            <div style="margin: 18px 0 0 0; width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <button id="fingerprint-btn" style="background: none; border: none; cursor: pointer; margin-top: 8px; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; color: #185a9d; font-weight: 700;">
+                    <img src="https://img.icons8.com/ios-filled/40/185a9d/fingerprint.png" alt="Fingerprint" style="width:32px; height:32px;"> Login with Fingerprint
+                </button>
+                <span id="fingerprint-status" style="font-size:0.98rem; color:#ff4e50; margin-top:6px;"></span>
+            </div>
+            <div class="login-links">
+                <a href="#">Forgot Password?</a>
+                <a href="register.html">Register</a>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        // Google Translate persistence
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        // Persist language selection across pages
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (const c0 of ca) {
+                let c = c0;
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+        // Observe Google Translate changes
+        function observeTranslate() {
+            var interval = setInterval(function() {
+                var select = document.querySelector('.goog-te-combo');
+                if (select) {
+                    select.addEventListener('change', function() {
+                        setCookie('googtrans', select.value, 7);
+                    });
+                    // Set language if cookie exists
+                    var lang = getCookie('googtrans');
+                    if (lang && select.value !== lang) {
+                        select.value = lang;
+                        select.dispatchEvent(new Event('change'));
+                    }
+                    clearInterval(interval);
+                }
+            }, 500);
+        }
+        window.addEventListener('load', observeTranslate);
+
+        // Theme toggle with persistence
+        const themeToggle = document.getElementById('theme-toggle');
+        function setTheme(mode) {
+            if(mode === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+                themeToggle.title = 'Switch to light mode';
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeToggle.textContent = '🌙';
+                themeToggle.title = 'Switch to dark mode';
+            }
+            setCookie('theme', mode, 30);
+        }
+        themeToggle.addEventListener('click', function() {
+            if(document.body.classList.contains('dark-mode')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        });
+        // On load, set theme from cookie
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = getCookie('theme');
+            if(savedTheme) setTheme(savedTheme);
+        });
+
+        // Biometric (Fingerprint) login
+        const fingerprintBtn = document.getElementById('fingerprint-btn');
+        const fingerprintStatus = document.getElementById('fingerprint-status');
+        if (window.PublicKeyCredential) {
+            fingerprintBtn.addEventListener('click', async function(e) {
+                e.preventDefault();
+                fingerprintStatus.textContent = '';
+                try {
+                    // Simple WebAuthn get() for demonstration
+                    const assertion = await navigator.credentials.get({
+                        publicKey: {
+                            challenge: new Uint8Array([1,2,3,4,5,6,7,8]),
+                            timeout: 60000,
+                            userVerification: 'preferred',
+                        }
+                    });
+                    fingerprintStatus.style.color = '#43cea2';
+                    fingerprintStatus.textContent = 'Fingerprint recognized! Logging you in...';
+                    // Here, you would send assertion to your server for verification
+                } catch (err) {
+                    fingerprintStatus.style.color = '#ff4e50';
+                    fingerprintStatus.textContent = 'Fingerprint authentication failed or was cancelled.';
+                }
+            });
+        } else {
+            fingerprintBtn.disabled = true;
+            fingerprintStatus.textContent = 'Fingerprint login not supported on this device/browser.';
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
